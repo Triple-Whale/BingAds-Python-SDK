@@ -74,7 +74,8 @@ class _RowReportHeader:
                 str_time = str_time[:str_time.rfind('(') - 1]
 
             try:
-                return datetime.strptime(str_time, '%m/%d/%Y %I:%M:%S%p')
+                format = '%m/%d/%Y %I:%M:%S %p' if str_time[-3] == ' ' else '%m/%d/%Y %I:%M:%S%p'
+                return datetime.strptime(str_time, format)
             except Exception:
                 dt_tokens = str_time.split(' ')
                 if len(dt_tokens) > 1:
